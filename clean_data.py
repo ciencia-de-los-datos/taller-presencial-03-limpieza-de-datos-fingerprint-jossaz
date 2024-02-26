@@ -47,9 +47,9 @@ def generate_cleaned_column(df):
     df = df.copy()
 
     # 1. Ordene el dataframe por 'fingerprint' y 'text'
-    fingerprints= df.sort_values(by=["fingerprint","text"]).copy()
+    df= df.sort_values(by=["fingerprint","text"]).copy()
     # 2. Seleccione la primera fila de cada grupo de 'fingerprint'
-    fingerprints = fingerprints.groupby("fingerprint").first().reset_index()
+    fingerprints = df.groupby("fingerprint").first().reset_index()
     # 3.  Cree un diccionario con 'fingerprint' como clave y 'text' como valor
     fingerprints = fingerprints.set_index("fingerprint")["text"].to_dict()
     # 4. Cree la columna 'cleaned' usando el diccionario
