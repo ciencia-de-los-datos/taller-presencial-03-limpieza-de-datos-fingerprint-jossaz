@@ -28,6 +28,9 @@ def create_fingerprint(df):
         .str.replace("-","")
     # 5. Remueva puntuación y caracteres de control
         .str.replace(".", "")
+        .str.translate(
+           str.maketrans("", "", "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")
+        )
     # 6. Convierta el texto a una lista de tokens
         .str.split()
     # 7. Transforme cada palabra con un stemmer de Porter
